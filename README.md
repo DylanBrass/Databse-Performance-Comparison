@@ -138,9 +138,22 @@ docker-compose up --build
 
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+I will show a step by step of running the test and seeing the results !
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+1. First we make the request which can all be found in my postman "team" above:
+![image](https://github.com/DylanBrass/MySQLvsMongoDBPerformance/assets/71225455/e91bf1c6-379e-4165-b4be-34a7f4facba8)
+
+2. You click send and wait for the 200 OK
+
+![image](https://github.com/DylanBrass/MySQLvsMongoDBPerformance/assets/71225455/e10124f3-fa13-47b6-a6fb-c9c5ae2fb393)
+
+3. Then you look at the logs, either in the docker-compose one or the container logs in the test_demo container
+![image](https://github.com/DylanBrass/MySQLvsMongoDBPerformance/assets/71225455/60cc98fb-12cd-4dba-9ba5-f90ecdfacb33)
+
+![image](https://github.com/DylanBrass/MySQLvsMongoDBPerformance/assets/71225455/8fe09468-f6fb-4f0e-ba86-3d8a5e41d9a5)
+
+
+
 
 ## Authors
 
