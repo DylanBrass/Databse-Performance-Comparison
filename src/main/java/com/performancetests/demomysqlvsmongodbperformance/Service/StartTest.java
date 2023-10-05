@@ -16,6 +16,7 @@ import java.util.*;
 public class StartTest {
     private final MySQLRepo mySQLRepo;
     private final MongoRepo mongoRepo;
+
     public void startTest() {
         log.info("Starting single insert test");
         for (int i = 0; i < 1000; i++) {
@@ -43,34 +44,34 @@ public class StartTest {
                 Thread.sleep(100);
                 System.out.println("Sleeping");
                 mySQLRepo.saveAll(List.of(
-               TestEntityMySql.builder()
-                        .testString("Test String")
-                        .testInt(1)
-                        .testFloat(1.0f)
-                        .testBoolean(true)
-                        .testDate(java.time.LocalDate.now())
-                        .build(),
-                TestEntityMySql.builder()
-                        .testString("Test String")
-                        .testInt(1)
-                        .testFloat(1.0f)
-                        .testBoolean(true)
-                        .testDate(java.time.LocalDate.now())
-                        .build(),
-                TestEntityMySql.builder()
-                        .testString("Test String")
-                        .testInt(1)
-                        .testFloat(1.0f)
-                        .testBoolean(true)
-                        .testDate(java.time.LocalDate.now())
-                        .build(),
-                TestEntityMySql.builder()
-                        .testString("Test String")
-                        .testInt(1)
-                        .testFloat(1.0f)
-                        .testBoolean(true)
-                        .testDate(java.time.LocalDate.now())
-                        .build()));
+                        TestEntityMySql.builder()
+                                .testString("Test String")
+                                .testInt(1)
+                                .testFloat(1.0f)
+                                .testBoolean(true)
+                                .testDate(java.time.LocalDate.now())
+                                .build(),
+                        TestEntityMySql.builder()
+                                .testString("Test String")
+                                .testInt(1)
+                                .testFloat(1.0f)
+                                .testBoolean(true)
+                                .testDate(java.time.LocalDate.now())
+                                .build(),
+                        TestEntityMySql.builder()
+                                .testString("Test String")
+                                .testInt(1)
+                                .testFloat(1.0f)
+                                .testBoolean(true)
+                                .testDate(java.time.LocalDate.now())
+                                .build(),
+                        TestEntityMySql.builder()
+                                .testString("Test String")
+                                .testInt(1)
+                                .testFloat(1.0f)
+                                .testBoolean(true)
+                                .testDate(java.time.LocalDate.now())
+                                .build()));
 
                 log.info("Saved to MySQL, insert number: " + (i * 4));
 
@@ -81,8 +82,7 @@ public class StartTest {
     }
 
 
-
-    public void startMongoTest(){
+    public void startMongoTest() {
         log.info("Starting single insert test");
         for (int i = 0; i < 1000; i++) {
             try {
@@ -104,18 +104,18 @@ public class StartTest {
         }
 
         log.info("Starting four inserts test");
-        for (int i = 0; i<1000; i++){
+        for (int i = 0; i < 1000; i++) {
             try {
                 Thread.sleep(100);
                 System.out.println("Sleeping");
                 mongoRepo.saveAll(List.of(TestEntityMongo.builder()
-                        .id(UUID.randomUUID().toString())
-                        .testString("Test String")
-                        .testInt(1)
-                        .testFloat(1.0f)
-                        .testBoolean(true)
-                        .testDate(java.time.LocalDate.now())
-                        .build(),
+                                .id(UUID.randomUUID().toString())
+                                .testString("Test String")
+                                .testInt(1)
+                                .testFloat(1.0f)
+                                .testBoolean(true)
+                                .testDate(java.time.LocalDate.now())
+                                .build(),
                         TestEntityMongo.builder()
                                 .id(UUID.randomUUID().toString())
                                 .testString("Test String")
@@ -157,7 +157,7 @@ public class StartTest {
                 log.info("MongoDB started at : " + new Date().getTime());
                 int i = 0;
                 long date = new Date().getTime();
-                for (; i < 10000; i++){
+                for (; i < 10000; i++) {
                     mongoRepo.save(TestEntityMongo.builder()
                             .id(UUID.randomUUID().toString())
                             .testString("Test String")
@@ -168,7 +168,7 @@ public class StartTest {
                             .build());
                 }
 
-                log.info("Mongo finished in : " + String.format("%.2f",(float)((new Date().getTime() - date)/1000.0)) + "s");
+                log.info("Mongo finished in : " + String.format("%.2f", (float) ((new Date().getTime() - date) / 1000.0)) + "s");
                 this.interrupt();
 
             }
@@ -190,9 +190,8 @@ public class StartTest {
                             .build());
                 }
 
-                
 
-                log.info("MySQL finished in : " + String.format("%.2f",(float)((new Date().getTime() - date)/1000.0)) + "s");
+                log.info("MySQL finished in : " + String.format("%.2f", (float) ((new Date().getTime() - date) / 1000.0)) + "s");
                 this.interrupt();
             }
 
@@ -201,7 +200,7 @@ public class StartTest {
     }
 
 
-    public void speedTestBulkInsert(){
+    public void speedTestBulkInsert() {
 
         new Thread() {
             public void run() {
@@ -209,7 +208,7 @@ public class StartTest {
                 int i = 0;
                 long date = new Date().getTime();
                 ArrayList<TestEntityMongo> testEntityMongoArrayList = new ArrayList<>();
-                for (; i < 100; i++){
+                for (; i < 100; i++) {
                     for (int j = 0; j < 100; j++) {
                         testEntityMongoArrayList.add(TestEntityMongo.builder()
                                 .id(UUID.randomUUID().toString())
@@ -224,7 +223,7 @@ public class StartTest {
                     testEntityMongoArrayList.clear();
                 }
 
-                log.info("Mongo finished in : " + String.format("%.2f",(float)((new Date().getTime() - date)/1000.0)) + "s");
+                log.info("Mongo finished in : " + String.format("%.2f", (float) ((new Date().getTime() - date) / 1000.0)) + "s");
                 this.interrupt();
 
             }
@@ -238,7 +237,7 @@ public class StartTest {
                 ArrayList<TestEntityMySql> testEntityMySql = new ArrayList<>();
 
                 for (; i < 100; i++) {
-                    for (int j = 0; j < 100; j++){
+                    for (int j = 0; j < 100; j++) {
                         testEntityMySql.add(TestEntityMySql.builder()
                                 .testString("Test String")
                                 .testInt(1)
@@ -250,7 +249,7 @@ public class StartTest {
                     mySQLRepo.saveAll(testEntityMySql);
                     testEntityMySql.clear();
                 }
-                log.info("MySQL finished in : " + String.format("%.2f",(float)((new Date().getTime() - date)/1000.0)) + "s");
+                log.info("MySQL finished in : " + String.format("%.2f", (float) ((new Date().getTime() - date) / 1000.0)) + "s");
                 this.interrupt();
             }
 
@@ -258,4 +257,62 @@ public class StartTest {
 
     }
 
+    public void speedTestSelect() {
+        new Thread() {
+            public void run() {
+                int i = 0;
+                for (; i < 10000; i++) {
+                    mongoRepo.save(TestEntityMongo.builder()
+                            .id(UUID.randomUUID().toString())
+                            .testString("Test String")
+                            .testInt(1)
+                            .testFloat(1.0f)
+                            .testBoolean(true)
+                            .testDate(java.time.LocalDate.now())
+                            .build());
+
+                }
+
+                log.info("Mongo started at : " + new Date().getTime());
+                long date = new Date().getTime();
+
+                List<TestEntityMongo> all = mongoRepo.findAll();
+
+                log.info("Mongo finished in : " + String.format("%.2f", (float) ((new Date().getTime() - date) / 1000.0)) + "s");
+
+
+                this.interrupt();
+
+            }
+        }.start();
+
+        new Thread() {
+            public void run() {
+                int i = 0;
+
+                ArrayList<TestEntityMySql> testEntityMySql = new ArrayList<>();
+
+                for (; i < 10000; i++) {
+                    testEntityMySql.add(TestEntityMySql.builder()
+                            .testString("Test String")
+                            .testInt(1)
+                            .testFloat(1.0f)
+                            .testBoolean(true)
+                            .testDate(java.time.LocalDate.now())
+                            .build());
+
+                }
+                mySQLRepo.saveAll(testEntityMySql);
+                log.info("MySQL started at : " + new Date().getTime());
+                long date = new Date().getTime();
+
+                Iterable<TestEntityMySql> all = mySQLRepo.findAll();
+                log.info("MySQL finished in : " + String.format("%.2f", (float) ((new Date().getTime() - date) / 1000.0)) + "s");
+                this.interrupt();
+
+            }
+        }.start();
+
+
+    }
 }
