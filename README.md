@@ -126,8 +126,7 @@ https://www.postman.com/
 ### Installation
 
 1. You clone the project with :
-* Http : https://github.com/DylanBrass/MySQLvsMongoDBPerformance.git
-* SSH : git@github.com:DylanBrass/MySQLvsMongoDBPerformance.git
+* Https : https://github.com/DylanBrass/MySQLvsMongoDBPerformance.git
 
 2. Get docker up
 ```sh
