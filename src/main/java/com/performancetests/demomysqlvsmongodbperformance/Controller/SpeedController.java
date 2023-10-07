@@ -18,15 +18,19 @@ public class SpeedController {
     }
 
     @GetMapping("/race/bulk/start")
-    public void raceBulkStart() throws InterruptedException {
+    public void raceBulkStart()  {
         startTest.speedTestBulkInsert();
     }
 
     @GetMapping("/race/selectAll/start")
-    public void raceSelectAllStart() throws InterruptedException {
+    public void raceSelectAllStart()  {
         startTest.speedTestSelect();
     }
 
+    @GetMapping("/race/deleteAll/start")
+    public void raceDeleteAllStart()  {
+        startTest.speedDeleteRace();
+    }
 
 
 }
