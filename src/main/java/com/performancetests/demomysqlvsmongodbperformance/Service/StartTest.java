@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Slf4j
@@ -42,7 +43,6 @@ public class StartTest {
         for (int i = 0; i < 1000; i++) {
             try {
                 Thread.sleep(100);
-                System.out.println("Sleeping");
                 mySQLRepo.saveAll(List.of(
                         TestEntityMySql.builder()
                                 .testString("Test String")
@@ -148,7 +148,7 @@ public class StartTest {
 
         new Thread() {
             public void run() {
-                log.info("MongoDB started at : " + new Date().getTime());
+                log.info("MongoDB started at : " + LocalDateTime.now());
                 int i = 0;
                 long date = new Date().getTime();
                 for (; i < 10000; i++) {
@@ -171,7 +171,7 @@ public class StartTest {
         new Thread() {
             public void run() {
                 int i = 0;
-                log.info("MySQL started at : " + new Date().getTime());
+                log.info("MySQL started at : " + LocalDateTime.now());
                 long date = new Date().getTime();
 
                 for (; i < 10000; i++) {
@@ -198,7 +198,7 @@ public class StartTest {
 
         new Thread() {
             public void run() {
-                log.info("MongoDB started at : " + new Date().getTime());
+                log.info("MongoDB started at : " + LocalDateTime.now());
                 int i = 0;
                 long date = new Date().getTime();
                 ArrayList<TestEntityMongo> testEntityMongoArrayList = new ArrayList<>();
@@ -226,7 +226,7 @@ public class StartTest {
         new Thread() {
             public void run() {
                 int i = 0;
-                log.info("MySQL started at : " + new Date().getTime());
+                log.info("MySQL started at : " + LocalDateTime.now());
                 long date = new Date().getTime();
                 ArrayList<TestEntityMySql> testEntityMySql = new ArrayList<>();
 
@@ -270,7 +270,7 @@ public class StartTest {
 
                 mongoRepo.saveAll(testEntityMongoArrayList);
 
-                log.info("Mongo started at : " + new Date().getTime());
+                log.info("Mongo started at : " + LocalDateTime.now());
                 long date = new Date().getTime();
 
                 List<TestEntityMongo> all = mongoRepo.findAll();
@@ -300,7 +300,7 @@ public class StartTest {
 
                 }
                 mySQLRepo.saveAll(testEntityMySql);
-                log.info("MySQL started at : " + new Date().getTime());
+                log.info("MySQL started at : " + LocalDateTime.now());
                 long date = new Date().getTime();
 
                 Iterable<TestEntityMySql> all = mySQLRepo.findAll();
@@ -331,7 +331,7 @@ public class StartTest {
 
                 mongoRepo.saveAll(testEntityMongoArrayList);
 
-                log.info("Mongo started at : " + new Date().getTime());
+                log.info("Mongo started at : " + LocalDateTime.now());
                 long date = new Date().getTime();
 
                mongoRepo.deleteAll();
@@ -361,7 +361,7 @@ public class StartTest {
 
                 }
                 mySQLRepo.saveAll(testEntityMySql);
-                log.info("MySQL started at : " + new Date().getTime());
+                log.info("MySQL started at : " + LocalDateTime.now());
                 long date = new Date().getTime();
 
                 mySQLRepo.deleteAll();
