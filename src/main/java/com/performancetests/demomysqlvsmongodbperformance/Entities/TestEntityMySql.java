@@ -19,9 +19,15 @@ public class TestEntityMySql {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String testString;
-    private int testInt;
-    private float testFloat;
-    private boolean testBoolean;
-    private LocalDate testDate;
+
+    @Column(name = "test_string")
+    public String testString;
+    @Column(name = "test_int")
+    public int testInt;
+    @Column(name = "test_float")
+    public float testFloat;
+    @Column(name = "test_boolean")
+    public boolean testBoolean;
+    @Column(name = "test_date")
+    public LocalDate testDate;
 }
