@@ -28,9 +28,9 @@ public class Utilities {
     public void clear() {
         mongoRepo.deleteAll();
         mySQLRepo.deleteAll();
+        sqlPostRepo.deleteAll();
         sqlUserRepo.deleteAll();
         mongoPostRepo.deleteAll();
-        sqlPostRepo.deleteAll();
         mongoUserRepo.deleteAll();
 
     }

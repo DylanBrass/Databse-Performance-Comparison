@@ -2,6 +2,7 @@ package com.performancetests.demomysqlvsmongodbperformance.Controller;
 
 import com.performancetests.demomysqlvsmongodbperformance.Service.RelationalStartTest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,4 +18,8 @@ public class RelationalSpeedController {
         relationalStartTest.speedTestSingleInsertOfRelationship();
     }
 
+    @GetMapping("/race/getAllPostForUser/start")
+    public void getAllPostForUser() throws InterruptedException {
+        relationalStartTest.speedTestSelectAllRelationShip();
+    }
 }

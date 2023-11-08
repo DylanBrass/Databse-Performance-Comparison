@@ -144,14 +144,14 @@ public class StartTest {
     }
 
 
-    public void speedTestSingleInsert() throws InterruptedException {
+    public void speedTestSingleInsert(int num) throws InterruptedException {
 
         new Thread() {
             public void run() {
                 log.info("MongoDB started at : " + LocalDateTime.now());
                 int i = 0;
                 long date = new Date().getTime();
-                for (; i < 10000; i++) {
+                for (; i < num; i++) {
                     mongoRepo.save(TestEntityMongo.builder()
                             .id(UUID.randomUUID().toString())
                             .testString("Test String")
@@ -174,7 +174,7 @@ public class StartTest {
                 log.info("MySQL started at : " + LocalDateTime.now());
                 long date = new Date().getTime();
 
-                for (; i < 10000; i++) {
+                for (; i < num; i++) {
                     mySQLRepo.save(TestEntityMySql.builder()
                             .testString("Test String")
                             .testInt(1)

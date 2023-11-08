@@ -79,4 +79,73 @@ public class RelationalStartTest {
 
     }
 
+
+    public void speedTestSelectAllRelationShip() throws InterruptedException {
+
+        new Thread() {
+            public void run() {
+
+                sqlPostRepo.deleteAll();
+                mySQLRepo.deleteAll();
+
+
+                SqlUser sqlUser = SqlUser.builder()
+                        .username("user1")
+                        .build();
+
+                mySQLRepo.save(sqlUser);
+                log.info("MySQL started at to insert posts : " + LocalDateTime.now());
+                long date = new Date().getTime();
+                for (int i = 0; i < 1000; i++) {
+                    SqlPost sqlPost = SqlPost.builder()
+                            .title("title" + i)
+                            .content("content" + i)
+                            .sqlUser(sqlUser)
+                            .build();
+                    sqlPostRepo.save(sqlPost);
+                }
+                log.info("MySQL finished in to insert posts : " + String.format("%.2f", (float) ((new Date().getTime() - date) / 1000.0)) + "s");
+
+                log.info("MySQL started at : " + LocalDateTime.now());
+                date = new Date().getTime();
+
+                List<SqlPost> sqlPosts = sqlPostRepo.findAllBySqlUser(sqlUser);
+
+                log.info("MySQL finished in : " + String.format("%.2f", (float) ((new Date().getTime() - date) / 1000.0)) + "s");
+                log.info("MySQL size : " + sqlPosts.size());
+                this.interrupt();
+            }
+        }.start();
+
+        new Thread() {
+            public void run() {
+
+                mongoPostRepo.deleteAll();
+                mongoRepo.deleteAll();
+                MongoUser mongoUser = MongoUser.builder()
+                        .username("user1")
+                        .build();
+                mongoRepo.save(mongoUser);
+                log.info("MongoDB started at to insert posts : " + LocalDateTime.now());
+                long date = new Date().getTime();
+                for (int i = 0; i < 1000; i++) {
+                    MongoPost mongoPost = MongoPost.builder()
+                            .title("title" + i)
+                            .content("content" + i)
+                            .userId(mongoUser.getId())
+                            .build();
+                    mongoPostRepo.save(mongoPost);
+                }
+                log.info("MongoDB finished in to insert posts : " + String.format("%.2f", (float) ((new Date().getTime() - date) / 1000.0)) + "s");
+                log.info("MongoDB started at : " + LocalDateTime.now());
+                date = new Date().getTime();
+
+                List<MongoPost> posts = mongoPostRepo.findAllByUserId(mongoUser.getId());
+                log.info("MongoDB finished in : " + String.format("%.2f", (float) ((new Date().getTime() - date) / 1000.0)) + "s");
+                log.info("MongoDB size : " + posts.size());
+                this.interrupt();
+            }
+
+        }.start();
+    }
 }
